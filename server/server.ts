@@ -1,4 +1,4 @@
-import { Socket } from "dgram";
+//server initialization
 import { createServer } from "http";
 import { Server } from "socket.io";
 
