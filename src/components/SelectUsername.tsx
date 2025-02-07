@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import socket from "@/utils/socket";
 interface SelectUsernameProps {
     onUsernameSelect: (username: string) => void;
 }
@@ -11,6 +11,7 @@ const SelectUsername: React.FC<SelectUsernameProps> = ({ onUsernameSelect }) => 
         e.preventDefault();
 
         if (isValid) {
+            socket.auth = { username };
             onUsernameSelect(username);
 
         }
