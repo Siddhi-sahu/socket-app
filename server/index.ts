@@ -1,7 +1,7 @@
 //server initialization
 import { createServer } from "http";
 import { Server } from "socket.io";
-// import socket from "../src/utils/socket";
+
 
 const httpServer = createServer();
 
@@ -46,10 +46,23 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("user connected", () => {
         userID: socket.id,
             username: socket.username
-    })
+    });
+
+    socket.on("private message", ({ content, to }) => {
+        socket.to(to).emit("private message", () => {
+            content,
+                from: socket.id
+        })
+
+    });
+
+    socket.on("disconnection", () => {
+        socket.broadcast.emit("user disconnected", socket.id);
+
+    });
 
 
-})
+});
 
 httpServer.listen(3001, () => {
     console.log("socket is listening on 3001")
