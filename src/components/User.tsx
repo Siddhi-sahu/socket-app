@@ -10,7 +10,7 @@ interface UserProps {
 
 }
 
-export default function ({ user, selected, onSelect }: UserProps) {
+export default function User({ user, selected, onSelect }: UserProps) {
     return (
         <div className={`p-2 cursor-pointer ${selected ? "bg-blue-500" : "bg-grey-700"} rounded mb-2`} onClick={() => onSelect(user)}>
             <div className="flex justify-between">

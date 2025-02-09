@@ -1,11 +1,14 @@
 //client initiliation
 
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 
 const URL = "http://localhost:3001";
+interface customSocket extends Socket {
+    username?: string
+}
 
 //client connecting to server url
-const socket = io(URL, {
+const socket: customSocket = io(URL, {
     autoConnect: false
 });
 
